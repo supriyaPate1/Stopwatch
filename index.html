@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    body {
+        box-sizing: border-box;
+      }
+      #stopWatch {
+        height: 50vh;
+        width: 100%;
+        background-color:black;
+        color: yellow;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+      }
+      h1{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+        color:purple;
+      
+      }
+      button{
+        /* display: flex; */
+        align-items: center;
+        /* justify-content: center;  */
+        font-size: 20px;
+        color:purple;
+      }
+      .time{
+        height: 50vh;
+        width: 100%;
+        background-color:black;
+        color: yellow;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 50px;
+
+      }
+      .buttons{
+        height: 10vh;
+        width: 100%;
+        background-color:black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top:-40px;
+      }
+      /* div{
+        magin-left:
+      } */
+
+    </style>
+</head>
+<body>
+    <h1>STOPWATCH</h1>
+    
+    <div class="stopwatch">
+      <div class="time">
+        <span class="hour">00</span>
+        <span class="colon">:</span>
+        <span class="minute">00</span>
+        <span class="colon">:</span>
+        <span class="second">00</span>
+        <span class="colon ms-colon">:</span>
+        <span class="millisecond">00</span>
+      </div>
+      <div class="buttons">
+        <button class="start">Start</button>
+        <button class="stop">Stop</button>
+        <button class="reset">Reset</button>
+      </div>
+    </div>
+    <script>
+
+
+
+
+
+
+let hr = min = sec = ms = "0" + 0,
+    startTimer;
+
+   const startBtn = document.querySelector(".start"),
+   stopBtn = document.querySelector(".stop"),
+   resetBtn = document.querySelector(".reset");
+
+   startBtn.addEventListener("click", start);
+   stopBtn.addEventListener("click", stop);
+   resetBtn.addEventListener("click", reset);
+
+//.............to start stopwatch..............
+
+  function start() {
+
+    startTimer = setInterval(()=>{
+      ms++
+      ms = ms < 10 ? "0" + ms : ms;
+
+      if(ms == 100){
+        sec++;
+        sec = sec < 10 ? "0" + sec : sec;
+        ms = "0" + 0;
+      }
+      if(sec == 60){
+        min++;
+        min = min < 10 ? "0" + min : min;
+        sec = "0" + 0;
+      }
+      if(min == 60){
+        hr++;
+        hr = hr < 10 ? "0" + hr : hr;
+        min = "0" + 0;
+      }
+      initial();
+    },10); //1000ms = 1s
+
+  }
+
+  //.............to stop stopwatch..............
+
+  function stop() {
+ 
+    // initial(startTimer);
+     clearInterval(startTimer);
+  
+  }
+  
+    //.............to reset stopwatch..............
+
+  function reset() {
+ 
+    hr = min = sec = ms = "0" + 0;
+    initial();
+  }
+
+  function initial() {
+    document.querySelector(".millisecond").innerText = ms;
+    document.querySelector(".second").innerText = sec;
+    document.querySelector(".minute").innerText = min;
+    document.querySelector(".hour").innerText = hr;
+  }
+
+ </script>
+</body>
+</html>
